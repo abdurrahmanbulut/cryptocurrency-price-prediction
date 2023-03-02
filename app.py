@@ -32,11 +32,12 @@ def predict():
     limit = 1000
     response = requests.get(f'https://api.binance.com/api/v3/klines?symbol={symbol}&interval={interval}&limit={limit}')
     data = response.json()
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data, columns=['Open time', 'Open', 'High', 'Low', 'Close', 'Volume', 'Close time', 'Quote asset volume', 'Number of trades', 'Taker buy base asset volume', 'Taker buy quote asset volume', 'Ignore'])
     df = df.iloc[:, :6]
     df.columns = ['Datetime', 'Open', 'High', 'Low', 'Close', 'Volume']
     df['Datetime'] = pd.to_datetime(df['Datetime'], unit='ms')
     df['Close'] = df['Close'].astype(float)
+    df.index = pd.RangeIndex(len(df.index))
 
     # Create rolling mean and standard deviation columns
     rolling_window_hours = 24
