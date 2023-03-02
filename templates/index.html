@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Currency prediction</title>
+    <link rel="stylesheet" href="../static/style.css">
+  </head>
+  <body>
+    
+    <main style="width: 100% ; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 95vh; width: 100%;">
+
+      <h2 style="opacity: 0.8;">Coin Predictor (...../USDT)</h2>
+      
+      <div class="coin-name-price" >
+        <input type="text" name="coin" id="search" placeholder="Search for a cryptocurrency...">
+      </div>
+      <div class="coin-name-price" id="coin-price">
+        Instant Price...
+      </div>
+      <div class="container-btn">
+        <div class="hours-input">
+          <input type="text"  id="hours" placeholder="Enter hours...">
+        </div>
+        
+        <div class="predict-button">
+          <form style="width: 100%; height: 100%;" action="{{ url_for('predict') }}" method="post" >
+              <input type="hidden" name="hour" id="hour">
+              <input type="hidden" name="coin" id="coin">
+              <button class="predict-button-btn" >Predict</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="coin-name-price" id="results">
+        {% if coin  %}
+          <span >{{coin}} : {{ price }} USDT in {{timee}} hours </span>
+        {% else %}
+           <span >Predicted price will shown here... </span>
+        {% endif %}
+      </div>
+      
+    </main>
+    <footer style="width: 100%; display: flex; justify-content: center; height: 20%;">
+      <p>Copyright &copy; 2023 Coin prediction website | Abdurrahman Bulut</p>
+    </footer>ü
+
+    <script src="../static/action.js"></script>
+  </body>
+</html>
