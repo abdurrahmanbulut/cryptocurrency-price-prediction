@@ -1,4 +1,4 @@
-# Cryptocurrency-price-prediction - Beta
+# Cryptocurrency-price-prediction Fun Project - Beta
 
 <hr>
 
